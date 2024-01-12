@@ -1,6 +1,14 @@
+import { useAppSelector } from "../hooks/hooks";
+import "../styles/index.css";
+import ProductCard from "./ProductCard";
+
 const Home = () => {
+    const items = useAppSelector(state=>state.item);
+    
     return(
-        <h2>Home</h2>
+        <div className="productDisplay">
+            {items.map(item=><ProductCard item={item} key={item.id}/>)}
+        </div>
     )
 }
 

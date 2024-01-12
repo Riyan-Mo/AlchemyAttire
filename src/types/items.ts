@@ -15,3 +15,7 @@ export interface item{
     delivery_date: string,
     rating: rating;
 }
+
+export interface cartItem extends item{
+    count: number;
+}
