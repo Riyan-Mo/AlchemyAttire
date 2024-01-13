@@ -15,7 +15,7 @@ const Product = () => {
     const id = useParams().id;
     const dispatch = useAppDispatch()
     const items = useAppSelector(state=>state.item)
-    const cart = useAppSelector(state=>state.cart);
+    const cart:cartItem[] = useAppSelector(state=>state.cart);
 
     useEffect(()=>{
         dispatch(initializeitem());
@@ -47,7 +47,10 @@ const Product = () => {
     }
 
     const item = items.find(i=>Number(i.id)===Number(id));
-    const cartItem = cart.find(c=>Number(c.id)===Number(id))||{...item, ['count']: 0};
+    if(!item){
+        return;
+    }
+    const cartItem:cartItem = cart.find(c=>Number(c.id)===Number(id))||{...item, ['count']: 0};
     const randomItems = [];
     const randomNumber = Math.floor(Math.random() * 3);
     for(let i = 0; i<3; i++){
@@ -58,6 +61,10 @@ const Product = () => {
 
     const sideBarItemStyle:React.CSSProperties = {display: "flex", justifyContent: "space-around", border: "1px lightgrey solid", alignItems: "center", padding: "1rem", borderRadius: "10px", gap: "1rem", textDecoration: "none", color: "black", flexDirection: "row"};
     
+    if(!item || !cartItem){
+        return;
+    }
+
     return(
         <div style={{display:"grid", gridTemplateColumns: "2fr 1fr"}}>
             <div style={{display: "grid", padding: "20px"}}>

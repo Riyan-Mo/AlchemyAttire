@@ -34,14 +34,14 @@ const cartReducer = createSlice({
 export const {setCart, addItem, updateItem, removeItem} = cartReducer.actions;
 
 export const initializeCart = () =>{
-    return async dispatch => {
+    return async (dispatch: (arg0: { payload: unknown; type: "cart/setCart"; }) => void) => {
         const response = await itemService.getCart();
         dispatch(setCart(response));
     }
 }
 
 export const addItemToCart = (item:item) => {
-    return async dispatch => {
+    return async (dispatch: (arg0: { payload: unknown; type: "cart/addItem"; }) => void) => {
         const cartItem:cartItem = {...item, ['count']: 1};
         const response = await itemService.addToCart(cartItem);
         dispatch(addItem(response));
@@ -49,7 +49,7 @@ export const addItemToCart = (item:item) => {
 }
 
 export const updateQuantity = (item:cartItem, change:number) =>{
-    return async dispatch => {
+    return async (dispatch: (arg0: { payload: unknown; type: "cart/updateItem"; }) => void) => {
         const cartItem:cartItem = {...item, ['count']: item.count+change}
         const response = await itemService.updateCount(cartItem);
         dispatch(updateItem(response));
@@ -57,7 +57,7 @@ export const updateQuantity = (item:cartItem, change:number) =>{
 }
 
 export const deleteFromCart = (cartItem: cartItem) => {
-    return async dispatch => {
+    return async (dispatch: (arg0: { payload: unknown; type: "cart/removeItem"; }) => void) => {
         const response = await itemService.removeCartItem(cartItem.id);
         dispatch(removeItem(response));
     }

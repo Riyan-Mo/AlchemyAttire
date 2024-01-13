@@ -75,9 +75,9 @@ export default function Navbar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              onChange={(e:React.SyntheticEvent)=>{
-                if(e.target?.value !== ""){
-                  navigate(`/search/${e.target?.value}`)
+              onChange={(e)=>{
+                if(e?.target?.value !== ""){
+                  navigate(`/search/${e?.target?.value}`)
                   return;
                 }
                 navigate(`/`);
