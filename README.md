@@ -11,15 +11,22 @@ A frontend for a shopping website built with React+Redux+Typescript+MUI.
    ```
 
 2. Install the dependencies
+
    ```sh
    npm install
    ```
-3. Run the json-server and React development server
+
+3. Run the json-server
 
 ```sh
- cd AlchemyAttire/
- npx json-server src/data/items.json --port 3001
- npm run dev
+cd AlchemyAttire/
+npx json-server src/data/items.json --port 3001
 ```
 
-4. Run the app.
+4. Run the React Development Server.
+
+```sh
+npm run dev
+```
+
+5. Run the app in the browser.
